@@ -12,7 +12,7 @@ class JDBC
 		con=DriverManager.getConnection(url,uname,pass);
 		return con;
 	}
-
+//--------------------------------view---------------------------------------------------------------------
 	void view()
 	{
 		try
@@ -31,7 +31,7 @@ class JDBC
 		}catch(Exception e){System.out.println(e);}
 	}
 	
-	
+//--------------------------------------Insert-----------------------------------------------------------	
 	void insert()
 	{
 		try
@@ -57,7 +57,7 @@ class JDBC
 		}
 		catch(Exception e) {System.out.println(e);}
 	}
-	
+//-------------------------------------Update-----------------------------------------------------------	
 	void update()
 	{
 		try
@@ -77,12 +77,30 @@ class JDBC
 			
 		}catch(Exception e) {System.out.println(e);}
 	}
+//----------------------------------Delete------------------------------------------------------------------
+		
+		void delete()
+		{
+			try
+			{
+				int status=0;
+			String query="delete from employee where Employee_id=?";
+			PreparedStatement ps=getconnection().prepareStatement(query);
+			ps.setInt(1, 308);
+			status=ps.executeUpdate();
+			if(status>0)
+			{
+				System.out.println("Deleted Successfully");
+			}
+			else {System.out.println("Failed to delete");}
+			}catch(Exception e) {System.out.println(e);}
+		}
 }
 public class Crud {
 
 	public static void main(String[] args) {
 		JDBC j=new JDBC();
-		j.update();
+		j.delete();
 
 
 	}
