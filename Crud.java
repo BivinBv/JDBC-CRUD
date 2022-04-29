@@ -56,17 +56,33 @@ class JDBC
 	    }
 		}
 		catch(Exception e) {System.out.println(e);}
-	
 	}
-
+	
+	void update()
+	{
+		try
+		{
+			int status=0;
+			String query="update employee set Employee_name=?,Salary=? where employee_id=?";
+			PreparedStatement ps=getconnection().prepareStatement(query);
+			ps.setString(1, "Ganesh");
+			ps.setInt(2, 39000);
+			ps.setInt(3,308);
+			status=ps.executeUpdate();
+			
+			if(status>0)
+			{
+				System.out.println("Updated Successfully");
+			}else {System.out.println("Failed to update");}
+			
+		}catch(Exception e) {System.out.println(e);}
+	}
 }
 public class Crud {
 
 	public static void main(String[] args) {
 		JDBC j=new JDBC();
-
-		j.view();
-		j.insert();
+		j.update();
 
 
 	}
